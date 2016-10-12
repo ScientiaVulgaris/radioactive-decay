@@ -27,12 +27,12 @@ function init() {
     geometry = new THREE.SphereGeometry( 20, 20, 20 );
     material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: false } );
 
-for ( var i = 0; i < 10; i++){
+
 
     mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(200/2 - 200*Math.random(), 0.0, 0.0)
     scene.add( mesh );
-}
+
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
