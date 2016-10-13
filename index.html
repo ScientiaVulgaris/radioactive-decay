@@ -27,10 +27,11 @@ function init() {
     geometry = new THREE.BoxGeometry( 20, 20, 20 );
     material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 for (var i = 0; i < 10; i++){
+var x = (Math.random()*100)
     mesh = new THREE.Mesh( geometry, material );
 
     scene.add( mesh );
-mesh.position.set(Math.random()*100, 0.0, 0.0);
+mesh.position.set(x, 0.0, 0.0);
 }
 
     renderer = new THREE.WebGLRenderer();
