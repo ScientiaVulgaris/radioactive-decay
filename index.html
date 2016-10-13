@@ -30,7 +30,7 @@ for (var i = 0; i < 10; i++){
     mesh = new THREE.Mesh( geometry, material );
 
     scene.add( mesh );
-mesh.set.position(Math.random()*100, 0.0, 0.0);
+mesh.position.set(Math.random()*100, 0.0, 0.0);
 }
 
     renderer = new THREE.WebGLRenderer();
