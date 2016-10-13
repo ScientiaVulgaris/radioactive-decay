@@ -30,7 +30,7 @@ function init() {
 
 for (var i = 0; i < 10; i++){
 	var x = Math.random()*100;
-	while (x%0 != 0){
+	while (x%10 != 0){
 		x = Math.random()*100;
 		}
     mesh = new THREE.Mesh( geometry, material );
