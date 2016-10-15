@@ -28,15 +28,14 @@ function init() {
     material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 for (var i = 0; i < 10; i++){
 var x = Math.ceil(Math.random()*1000)
+console.log(x)
 
-while (x%20 != 0){
-x = Math.ceil(Math.random()*1000)
-}
+
     mesh = new THREE.Mesh( geometry, material );
 
     scene.add( mesh );
-mesh.position.set(x+'.0', 0.0, 0.0);
-}
+mesh.position.set(0.0, 0.0, 0.0);
+
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
