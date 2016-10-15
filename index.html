@@ -51,8 +51,7 @@ z = Math.ceil(Math.random()*1000);
     scene.add( mesh );
 console.log(x+'.0');
 mesh.position.set(x+'.0', y+'.0', z+'.0');
- mesh.updateMatrix();
-    mesh.matrixAutoUpdate = false;
+ 
 }
 
 
@@ -75,6 +74,7 @@ function animate() {
 function render(){
 
 controls.update();
+controls.autoRotate = true;
 
     renderer.render( scene, camera );
 }
