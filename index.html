@@ -16,6 +16,7 @@ var geometry, material, mesh;
 
 init();
 animate();
+render();
 
 function init() {
 
@@ -65,14 +66,21 @@ mesh.position.set(x+'.0', y+'.0', z+'.0');
 function animate() {
 
     requestAnimationFrame( animate );
-controls.update();
+
 
     mesh.rotation.x += 0.01;
     mesh.rotation.y += 0.02;
+}
+
+function render(){
+
+controls.update();
 
     renderer.render( scene, camera );
-
 }
+
+
+
 
 		</script>
 	</body>
