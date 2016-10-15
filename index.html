@@ -11,12 +11,11 @@
 	<body>
 		<script src="js/three.min.js"></script><script src="js/OrbitControls.js"></script>
 		<script>
-			var controls, scene, camera, renderer;
+			var  scene, camera, renderer;
 var geometry, material, mesh;
 
 init();
 animate();
-render();
 
 function init() {
 
@@ -24,8 +23,7 @@ function init() {
 
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
     camera.position.z = 1000;
-controls = new THREE.OrbitControls( camera );
-  controls.addEventListener( 'change', render );
+
 
     geometry = new THREE.BoxGeometry( 20, 20, 20 );
     material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
@@ -71,14 +69,13 @@ function animate() {
     mesh.rotation.y += 0.02;
 
 
-function render(){
 
-controls.update();
-controls.autoRotate = true;
+
+
 
     renderer.render( scene, camera );
 }
-}
+
 
 
 
