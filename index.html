@@ -49,6 +49,10 @@ z = 200 - Math.ceil(Math.random()*400);
 console.log(x+'.0'+','+y+'.0'+','+z+'.0');
 mesh.position.set(x+'.0', y+'.0', z+'.0');
 
+
+
+ 
+}
 hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 0.77);
 scene.add( hemisphereLight );
 
@@ -56,9 +60,6 @@ directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set( -0.2, 0.62, 1.29 );
 directionalLight.castShadow = true;
 scene.add( directionalLight );
-
- 
-}
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
