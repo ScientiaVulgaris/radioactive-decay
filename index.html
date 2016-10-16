@@ -29,17 +29,17 @@ function init() {
     material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: 0x3f8950, ambient: 0xffffff, 
 emissive: 0x000000, specular: 0x000000, shininess: 31.99});
 for (var i = 0; i < 20; i++){
-var x = 200 - Math.ceil(Math.random()*400);
-var y = 200 - Math.ceil(Math.random()*400);
-var z = 200 - Math.ceil(Math.random()*400);
-while(x%20 != 0){
-x = 200 - Math.ceil(Math.random()*400);
+var x = 400 - Math.ceil(Math.random()*800);
+var y = 400 - Math.ceil(Math.random()*800);
+var z = 400 - Math.ceil(Math.random()*800);
+while(x%50 != 0){
+x = 400 - Math.ceil(Math.random()*800);
 }
-while(y%20 != 0){
-y = 200 - Math.ceil(Math.random()*400);
+while(y%50 != 0){
+y = 400 - Math.ceil(Math.random()*800);
 }
-while(z%20 != 0){
-z = 200 - Math.ceil(Math.random()*400);
+while(z%50 != 0){
+z = 400 - Math.ceil(Math.random()*800);
 }
 
 
