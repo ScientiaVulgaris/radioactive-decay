@@ -24,6 +24,10 @@ function init() {
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
     camera.position.z = 1000;
 
+controls = new THREE.OrbitControls( camera );
+  controls.addEventListener( 'change', render );
+
+
 
     geometry = new THREE.SphereGeometry( 50, 100, 100 );
     material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: 0x54c7ec, ambient: 0xffffff, 
@@ -77,6 +81,11 @@ function animate() {
 
     mesh.rotation.x += 0.01;
     mesh.rotation.y += 0.02;
+controls.update();
+
+
+
+
 
     renderer.render( scene, camera );
 }
