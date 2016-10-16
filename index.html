@@ -30,9 +30,7 @@ controls = new THREE.OrbitControls( camera );
 
 
     geometry = new THREE.SphereGeometry( 50, 100, 100 );
-    material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: 0x54c7ec, ambient: 0xffffff, 
-emissive: 0x000000, specular: 0x000000, shininess: 60.0});
-
+   
 //random 
 for (var i = 0; i < 500; i++){
 var x = 250 - Math.ceil(Math.random()*500);
@@ -47,6 +45,12 @@ y = 250 - Math.ceil(Math.random()*500);
 while(z%100 != 0){
 z = 250 - Math.ceil(Math.random()*500);
 }
+
+var colorRGB = new THREE.Color( Math.random(), Math.random(), Math.random() );
+
+ material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: colorRGB.getHex(), ambient: 0xffffff, 
+emissive: 0x000000, specular: 0x000000, shininess: 60.0});
+
 
 
     mesh = new THREE.Mesh( geometry, material );
