@@ -32,17 +32,17 @@ controls = new THREE.OrbitControls( camera );
     geometry = new THREE.SphereGeometry( 50, 150,150 );
    
 //random 
-for (var i = 0; i < 1000; i++){
+for (var i = 0; i < 500; i++){
 var x = 250 - Math.ceil(Math.random()*500);
 var y = 250 - Math.ceil(Math.random()*500);
 var z = 250 - Math.ceil(Math.random()*500);
-while(x%50 != 0){
+while(x%100 != 0){
 x = 250 - Math.ceil(Math.random()*500);
 }
-while(y%50 != 0){
+while(y%100 != 0){
 y = 250 - Math.ceil(Math.random()*500);
 }
-while(z%50 != 0){
+while(z%100 != 0){
 z = 250 - Math.ceil(Math.random()*500);
 }
 
