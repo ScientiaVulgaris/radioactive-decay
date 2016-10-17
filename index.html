@@ -70,6 +70,8 @@ directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set( -0.2, 0.62, 1.29 );
 directionalLight.castShadow = true;
 scene.add( directionalLight );
+camera.add(directionalLight);
+scene.add(camera);
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
