@@ -51,9 +51,6 @@ z = 250 - Math.ceil(Math.random()*500);
 }
 */
 
-
-	
-//here be colour code 	
 var colorRGB = new THREE.Color( Math.random(), Math.random(), Math.random() );
 
  material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: colorRGB.getHex(), ambient: 0xffffff, 
@@ -68,10 +65,6 @@ mesh.position.set(x+'.0', y+'.0', z+'.0');
 
 spheres.push(mesh);
 
-
-
-
-
     scene.add( mesh);
 
 
@@ -80,7 +73,7 @@ spheres.push(mesh);
 
  
 }
-console.log(spheres[0].position.x);
+console.log(spheres[5].position.x);
 
 hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 0.77);
 scene.add( hemisphereLight );
