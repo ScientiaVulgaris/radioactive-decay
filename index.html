@@ -72,13 +72,14 @@ if (spheres.length == 1){
 break
 }else{
 
-
-for(var j = 0; j < spheres.length - 1; j++){
+var j = 0
+while(j < spheres.length - 1){
 var currentSphere = spheres[j];
 while ( x + 50 > currentSphere.position.x - 50 || x - 50 < currentSphere.position.x + 50 ){
 var x = 250 - Math.ceil(Math.random()*500);
 var y = 250 - Math.ceil(Math.random()*500);
 var z = 250 - Math.ceil(Math.random()*500);
+j++;
 }
 }
 }
