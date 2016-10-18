@@ -46,10 +46,8 @@ while(z%100 != 0){
 z = 250 - Math.ceil(Math.random()*500);
 }
 
-var colorRGB = new THREE.Color( Math.random(), Math.random(), Math.random() );
-
- material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: colorRGB.getHex(), ambient: 0xffffff, 
-emissive: 0x000000, specular: 0x000000, shininess: 60.0});
+	
+//here be colour code 	
 
 
 
@@ -83,6 +81,11 @@ scene.add(camera);
 function animate() {
 
     requestAnimationFrame( animate );
+var colorRGB = new THREE.Color( Math.random(), Math.random(), Math.random() );
+
+ material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: colorRGB.getHex(), ambient: 0xffffff, 
+emissive: 0x000000, specular: 0x000000, shininess: 60.0});
+
 
 
     mesh.rotation.x += 0.01;
