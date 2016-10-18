@@ -69,11 +69,12 @@ mesh.position.set(x+'.0', y+'.0', z+'.0');
 spheres.push(mesh);
 
 if (spheres.length == 1){
-scene.add(mesh);
+break
 }else{
-var j = 0;
+
+
+for(var j = 0; j < spheres.length - 1; j++){
 var currentSphere = spheres[j];
-for(j = 0; j < spheres.length - 1; j++){
 while ( x + 50 > currentSphere.position.x - 50 || x - 50 < currentSphere.position.x + 50 && y + 50 > currentSphere.position.y - 50 || y - 50 < currentSphere.position.y + 50 && z + 50 > currentSphere.position.z - 50 || z - 50 < currentSphere.position.z + 50){
 var x = 250 - Math.ceil(Math.random()*500);
 var y = 250 - Math.ceil(Math.random()*500);
