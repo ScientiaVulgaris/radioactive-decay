@@ -30,12 +30,16 @@ controls = new THREE.OrbitControls( camera );
 
 
     geometry = new THREE.SphereGeometry( 50, 150,150 );
+var spheres = [];
+
    
 //random 
 for (var i = 0; i < 500; i++){
 var x = 250 - Math.ceil(Math.random()*500);
 var y = 250 - Math.ceil(Math.random()*500);
 var z = 250 - Math.ceil(Math.random()*500);
+
+/*	
 while(x%100 != 0){
 x = 250 - Math.ceil(Math.random()*500);
 }
@@ -45,6 +49,8 @@ y = 250 - Math.ceil(Math.random()*500);
 while(z%100 != 0){
 z = 250 - Math.ceil(Math.random()*500);
 }
+*/
+
 
 	
 //here be colour code 	
@@ -58,10 +64,22 @@ emissive: 0x000000, specular: 0x000000, shininess: 60.0});
 
 
     mesh = new THREE.Mesh( geometry, material );
+mesh.position.set(x+'.0', y+'.0', z+'.0');
+
+spheres.push(mesh);
+for(j = 0; j < spheres.length(); i++){
+var currentSphere = spheres[0];
+while ( x + 50 > currentSphere.x - 50 || x - 50 < currentSphere.x + 50 && y + 50 > currentSphere.y - 50 || y - 50 < currentSphere.y + 50 && z + 50 > currentSphere.z - 50 || z - 50 < currentSphere.z + 50){
+var x = 250 - Math.ceil(Math.random()*500);
+var y = 250 - Math.ceil(Math.random()*500);
+var z = 250 - Math.ceil(Math.random()*500);
+}
+
+
 
     scene.add( mesh );
-//console.log(x+'.0'+','+y+'.0'+','+z+'.0');
-mesh.position.set(x+'.0', y+'.0', z+'.0');
+
+
 
 
 
