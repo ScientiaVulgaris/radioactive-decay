@@ -64,11 +64,10 @@ if(spheres.length == 0){
 mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(x+'.0', y+'.0', z+'.0');
  scene.add( mesh);
-
-spheres.push(mesh);
-
-   
+spheres.push(mesh); 
 } else{
+mesh = new THREE.Mesh( geometry, material );
+mesh.position.set(x+'.0', y+'.0', z+'.0');
 break;
 }
 
