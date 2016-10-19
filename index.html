@@ -58,12 +58,13 @@ emissive: 0x000000, specular: 0x000000, shininess: 60.0});
 
 
    
-mesh.position.set(x+'.0', y+'.0', z+'.0');
+
 
 if(spheres.length == 0){
 mesh = new THREE.Mesh( geometry, material );
- scene.add( mesh);
 mesh.position.set(x+'.0', y+'.0', z+'.0');
+ scene.add( mesh);
+
 spheres.push(mesh);
 
    
