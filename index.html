@@ -66,10 +66,23 @@ mesh.position.set(x+'.0', y+'.0', z+'.0');
  scene.add( mesh);
 spheres.push(mesh); 
 } else{
+for (var j = 0; j < spheres.length - 1; j++){
+var currentSphere = spheres[i];
+	while (Math.sqrt(Math.power(x - currentSphere.position.x, 2) + 
+			Math.power(y - currentSphere.position.y, 2) + 
+			Math.power(z - currentSphere.position.z, 2)) < 100){
+var x = 250 - Math.ceil(Math.random()*500);
+var y = 250 - Math.ceil(Math.random()*500);
+var z = 250 - Math.ceil(Math.random()*500);
+	}
+}
 mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(x+'.0', y+'.0', z+'.0');
-break;
-}
+ scene.add( mesh);
+spheres.push(mesh); 
+
+
+
 
 
 
