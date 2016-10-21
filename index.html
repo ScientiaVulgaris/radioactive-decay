@@ -67,7 +67,7 @@ mesh.position.set(x+'.0', y+'.0', z+'.0');
 spheres.push(mesh); 
 } else{
 for(var j = 0; j < spheres.length - 1; j++){
-console.log(j);
+console.log(spheres[j].position.x);
 /*
 var currentSphere = spheres[j];
 if (Math.sqrt(Math.pow(x - currentSphere[j].position.x,2) + 
@@ -85,7 +85,7 @@ mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(x+'.0', y+'.0', z+'.0');
  scene.add( mesh);
 spheres.push(mesh); 
-console.log('sup');
+
 
 
 
