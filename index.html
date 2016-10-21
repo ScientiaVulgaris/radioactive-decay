@@ -85,6 +85,7 @@ mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(x+'.0', y+'.0', z+'.0');
  scene.add( mesh);
 spheres.push(mesh); 
+console.log('sup');
 
 
 
@@ -107,7 +108,7 @@ spheres.push(mesh);
 
 }
 
-console.log('sup');
+
 
 hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 0.77);
 scene.add( hemisphereLight );
