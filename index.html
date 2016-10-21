@@ -67,6 +67,8 @@ mesh.position.set(x+'.0', y+'.0', z+'.0');
 spheres.push(mesh); 
 } else{
 for(var j = 0; j < spheres.length - 1; j++){
+console.log[j]
+/*
 var currentSphere = spheres[j];
 if (Math.sqrt(Math.pow(x - currentSphere[j].position.x,2) + 
 Math.pow(y - currentSphere[j].position.y,2) + 
@@ -76,6 +78,7 @@ Math.pow(z - currentSphere[j].position.z,2)) < 100 ){
  z = 250 - Math.ceil(Math.random()*500);
 	
 }
+*/
 }
 }
 mesh = new THREE.Mesh( geometry, material );
