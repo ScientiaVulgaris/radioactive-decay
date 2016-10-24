@@ -62,19 +62,7 @@ emissive: 0x000000, specular: 0x000000, shininess: 60.0});
 
 
 if(spheres.length > 0){
-var j = 0; 
-var currentSphere = spheres[j]
-if (Math.sqrt(Math.pow(x - currentSphere.position.x,2) + 
-Math.pow(y - currentSphere.position.y,2) + 
-Math.pow(z - currentSphere.position.z,2)) < 100 ){
- x = 250 - Math.ceil(Math.random()*500);
- y = 250 - Math.ceil(Math.random()*500);
- z = 250 - Math.ceil(Math.random()*500);
-}else{
-mesh = new THREE.Mesh( geometry, material );
-mesh.position.set(x+'.0', y+'.0', z+'.0');
- scene.add( mesh);
-spheres.push(mesh); 
+
 console.log('this should appear more than once676');
 	
 }
