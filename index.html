@@ -34,7 +34,7 @@ var spheres = [];
 
    
 //random 
-for (var i = 0; i < 131; i++){
+for (var i = 0; i < 50; i++){
 var x = 250 - Math.ceil(Math.random()*500);
 var y = 250 - Math.ceil(Math.random()*500);
 var z = 250 - Math.ceil(Math.random()*500);
@@ -54,7 +54,7 @@ z = 250 - Math.ceil(Math.random()*500);
 
 var colorRGB = new THREE.Color( Math.random(), Math.random(), Math.random() );
 
- material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: colorRGB.getHex(), ambient: 0xffffff, 
+ material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: colorRGB.getHex(), /*ambient: 0xffffff*/, 
 emissive: 0x000000, specular: 0x000000, shininess: 60.0});
 
 
