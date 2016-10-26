@@ -82,14 +82,13 @@ spheres.push(mesh);
 
 
 } 
-if(spheres.length == 0){
+else{
 console.log('this should appear once');
 mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(x+'.0', y+'.0', z+'.0');
  scene.add( mesh);
 spheres.push(mesh); 
 }
-return mesh; 
 }
 sphereCollision(x, y, z);
 
