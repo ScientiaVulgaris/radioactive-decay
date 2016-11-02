@@ -63,9 +63,9 @@ emissive: 0x000000, specular: 0x000000, shininess: 60.0});
 
 if(spheres.length > 0){
 for(j = 0; j < spheres.length; j++){
-if (Math.sqrt(Math.pow(x - spheres[j].position.x,2) + 
+if (Math.pow(x - spheres[j].position.x,2) + 
 Math.pow(y - spheres[j].position.y,2) + 
-Math.pow(z - spheres[j].position.z,2)) < 100 ){
+Math.pow(z - spheres[j].position.z,2) < Math.pow(100, 2) ){
  x = 250 - Math.ceil(Math.random()*500);
  y = 250 - Math.ceil(Math.random()*500);
  z = 250 - Math.ceil(Math.random()*500);
