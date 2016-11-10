@@ -1,5 +1,5 @@
 /*
- * Javascript Quadtree 
+ * Javascript Octree 
  * @version 1.1.1
  * @licence MIT
  * @author Timo Hausmann
@@ -29,13 +29,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ;(function(window, Math) {
  	
 	 /*
-	  * Quadtree Constructor
-	  * @param Object bounds		bounds of the node, object with x, y, width, height
+	  * Octree Constructor
+	  * @param Object bounds		bounds of the node, object with x, y, z, width, height, depth
 	  * @param Integer max_objects		(optional) max objects a node can hold before splitting into 4 subnodes (default: 10)
-	  * @param Integer max_levels		(optional) total max levels inside root Quadtree (default: 4) 
+	  * @param Integer max_levels		(optional) total max levels inside root Octree (default: 4) 
 	  * @param Integer level		(optional) deepth level, required for subnodes  
 	  */
-	function Quadtree( bounds, max_objects, max_levels, level ) {
+	function Octree( bounds, max_objects, max_levels, level ) {
 		
 		this.max_objects	= max_objects || 10;
 		this.max_levels		= max_levels || 4;
@@ -51,7 +51,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	/*
 	 * Split the node into 4 subnodes
 	 */
-	Quadtree.prototype.split = function() {
+	Octree.prototype.split = function() {
 		
 		var 	nextLevel	= this.level + 1,
 			subWidth	= Math.round( this.bounds.width / 2 ),
@@ -60,7 +60,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			y 		= Math.round( this.bounds.y );		
 	 
 	 	//top right node
-		this.nodes[0] = new Quadtree({
+		this.nodes[0] = new Octree({
 			x	: x + subWidth, 
 			y	: y, 
 			width	: subWidth, 
@@ -68,7 +68,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//top left node
-		this.nodes[1] = new Quadtree({
+		this.nodes[1] = new Octree({
 			x	: x, 
 			y	: y, 
 			width	: subWidth, 
@@ -76,7 +76,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//bottom left node
-		this.nodes[2] = new Quadtree({
+		this.nodes[2] = new Octree({
 			x	: x, 
 			y	: y + subHeight, 
 			width	: subWidth, 
@@ -84,7 +84,38 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//bottom right node
-		this.nodes[3] = new Quadtree({
+		this.nodes[3] = new Octree({
+			x	: x + subWidth, 
+			y	: y + subHeight, 
+			width	: subWidth, 
+			height	: subHeight
+		}, this.max_objects, this.max_levels, nextLevel);
+
+		this.nodes[4] = new Octree({
+			x	: x + subWidth, 
+			y	: y, 
+			width	: subWidth, 
+			height	: subHeight
+		}, this.max_objects, this.max_levels, nextLevel);
+		
+		//top left node
+		this.nodes[5] = new Octree({
+			x	: x, 
+			y	: y, 
+			width	: subWidth, 
+			height	: subHeight
+		}, this.max_objects, this.max_levels, nextLevel);
+		
+		//bottom left node
+		this.nodes[6] = new Octree({
+			x	: x, 
+			y	: y + subHeight, 
+			width	: subWidth, 
+			height	: subHeight
+		}, this.max_objects, this.max_levels, nextLevel);
+		
+		//bottom right node
+		this.nodes[7] = new Octree({
 			x	: x + subWidth, 
 			y	: y + subHeight, 
 			width	: subWidth, 
@@ -98,7 +129,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	 * @param Object pRect		bounds of the area to be checked, with x, y, width, height
 	 * @return Integer		index of the subnode (0-3), or -1 if pRect cannot completely fit within a subnode and is part of the parent node
 	 */
-	Quadtree.prototype.getIndex = function( pRect ) {
+	Octree.prototype.getIndex = function( pRect ) {
 		
 		var 	index 			= -1,
 			verticalMidpoint 	= this.bounds.x + (this.bounds.width / 2),
@@ -137,7 +168,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	 * objects to their corresponding subnodes.
 	 * @param Object pRect		bounds of the object to be added, with x, y, width, height
 	 */
-	Quadtree.prototype.insert = function( pRect ) {
+	Octree.prototype.insert = function( pRect ) {
 		
 		var 	i = 0,
 	 		index;
@@ -181,7 +212,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	 * @param Object pRect		bounds of the object to be checked, with x, y, width, height
 	 * @Return Array		array with all detected objects
 	 */
-	Quadtree.prototype.retrieve = function( pRect ) {
+		Octree.prototype.retrieve = function( pRect ) {
 	 	
 		var 	index = this.getIndex( pRect ),
 			returnObjects = this.objects;
@@ -208,7 +239,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	/*
 	 * Clear the quadtree
 	 */
-	Quadtree.prototype.clear = function() {
+	Octree.prototype.clear = function() {
 		
 		this.objects = [];
 	 
@@ -222,6 +253,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	};
 
 	//make Quadtree available in the global namespace
-	window.Quadtree = Quadtree;	
+	window.Octree = Octree;	
 
 })(window, Math);
