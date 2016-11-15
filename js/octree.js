@@ -8,13 +8,18 @@
 	  * @param Integer max_levels		(optional) total max levels inside root Octree (default: 4) 
 	  * @param Integer level		(optional) deepth level, required for subnodes  
 	  */
-	function Octree( bounds, max_objects, max_levels, level ) {
+	function Octree( x1, x2, y1, y2, z1, z2, max_objects, max_levels, level ) {
 		
 		this.max_objects	= max_objects || 10;
 		this.max_levels		= max_levels || 4;
 		
 		this.level 		= level || 0;
-		this.bounds 		= bounds;
+		this.x1		= x1;
+		this.x2		= x2;
+		this.y1		= y1;
+		this.y2		= y2;
+		this.z1		= z1;
+		this.z2		= z2;
 		
 		this.objects 		= [];
 		this.nodes 		= [];
@@ -27,15 +32,17 @@
 	Octree.prototype.split = function() {
 		
 		var 	nextLevel	= this.level + 1,
-			subWidth	= Math.round( this.bounds.width / 2 ),
-			subHeight 	= Math.round( this.bounds.height / 2 ),
-			x 		= Math.round( this.bounds.x ),
-			y 		= Math.round( this.bounds.y );		
+			subWidth	= Math.round( (this.x2 - this.x1) / 2 ),
+			subHeight 	= Math.round( (this.y2 - this.y1) / 2 ),
+			subDepth 	= Math.round( (this.z2 - this.z1) / 2 ),
+			x1 		= Math.round( this.x1 ),
+			y1 		= Math.round( this.y1 ),
+			z1		= Math.round( this.z1 );		
 	 
 	 	//top right node
 		this.nodes[0] = new Octree({
-			x	: x + subWidth, 
-			y	: y, 
+			x1	: x1 + subWidth, 
+			y1	: y1, 
 			width	: subWidth, 
 			height	: subHeight
 		}, this.max_objects, this.max_levels, nextLevel);
