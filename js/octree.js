@@ -32,74 +32,94 @@
 	Octree.prototype.split = function() {
 		
 		var 	nextLevel	= this.level + 1,
-			subWidth	= Math.round( (this.x2 - this.x1) / 2 ),
-			subHeight 	= Math.round( (this.y2 - this.y1) / 2 ),
-			subDepth 	= Math.round( (this.z2 - this.z1) / 2 ),
-			x1 		= Math.round( this.x1 ),
-			y1 		= Math.round( this.y1 ),
-			z1		= Math.round( this.z1 );		
+			subWidth	= Math.round( (this.x2 +this.x1) / 2 ),
+			subHeight 	= Math.round( (this.y2 +this.y1) / 2 ),
+			subDepth 	= Math.round( (this.z2 +this.z1) / 2 ),
+			x1		= x1,
+			x2		= x2,
+			y1		= y1,
+			y2		= y2,
+			z1		= z1,
+			z2		= z2;	
 	 
-	 	//top right node
+	 	//top front right node
 		this.nodes[0] = new Octree({
-			x1	: x1 + subWidth, 
-			y1	: y1, 
-			width	: subWidth, 
-			height	: subHeight
+			x1		= subWidth,
+			x2		= x2,
+			y1		= subHeight,
+			y2		= y2,
+			z1		= subDepth,
+			z2		= z2;	
 		}, this.max_objects, this.max_levels, nextLevel);
 		
-		//top left node
+		//top back right node
 		this.nodes[1] = new Octree({
-			x	: x, 
-			y	: y, 
-			width	: subWidth, 
-			height	: subHeight
+			x1		= subWidth,
+			x2		= x2,
+			y1		= subHeight,
+			y2		= y2,
+			z1		= z1,
+			z2		= subDepth;
 		}, this.max_objects, this.max_levels, nextLevel);
 		
-		//bottom left node
+		//top back left node
 		this.nodes[2] = new Octree({
-			x	: x, 
-			y	: y + subHeight, 
-			width	: subWidth, 
-			height	: subHeight
+			x1		= x1,
+			x2		= subWidth,
+			y1		= subHeight,
+			y2		= y2,
+			z1		= z1,
+			z2		= subDepth;
 		}, this.max_objects, this.max_levels, nextLevel);
 		
-		//bottom right node
+		//top front left node
 		this.nodes[3] = new Octree({
-			x	: x + subWidth, 
-			y	: y + subHeight, 
-			width	: subWidth, 
-			height	: subHeight
+			x1		= x1,
+			x2		= subWidth,
+			y1		= subHeight,
+			y2		= y2,
+			z1		= subDepth,
+			z2		= z2;	
 		}, this.max_objects, this.max_levels, nextLevel);
 
+		//bottom front right node
 		this.nodes[4] = new Octree({
-			x	: x + subWidth, 
-			y	: y, 
-			width	: subWidth, 
-			height	: subHeight
+			x1		= subWidth,
+			x2		= x2,
+			y1		= y1,
+			y2		= subHeight
+			z1		= subDepth,
+			z2		= z2;	
 		}, this.max_objects, this.max_levels, nextLevel);
 		
-		//top left node
+		//bottom back right
 		this.nodes[5] = new Octree({
-			x	: x, 
-			y	: y, 
-			width	: subWidth, 
-			height	: subHeight
+			x1		= subWidth,
+			x2		= x2,
+			y1		= y1,
+			y2		= subHeight
+			z1		= z1,
+			z2		= subDepth;
 		}, this.max_objects, this.max_levels, nextLevel);
 		
-		//bottom left node
+		//bottom back left node
 		this.nodes[6] = new Octree({
-			x	: x, 
-			y	: y + subHeight, 
-			width	: subWidth, 
-			height	: subHeight
+			x1		= x1,
+			x2		= subDepth,
+			y1		= y1,
+			y2		= subWidth
+			z1		= z1,
+			z2		= subDepth;
 		}, this.max_objects, this.max_levels, nextLevel);
 		
-		//bottom right node
+		//bottom front left node
 		this.nodes[7] = new Octree({
-			x	: x + subWidth, 
-			y	: y + subHeight, 
-			width	: subWidth, 
-			height	: subHeight
+			x1		= x1,
+			x2		= subWidth,
+			y1		= y1,
+			y2		= subHeight
+			z1		= subDepth,
+			z2		= z2;	
 		}, this.max_objects, this.max_levels, nextLevel);
 	};
 	
@@ -112,17 +132,18 @@
 	Octree.prototype.getIndex = function( pRect ) {
 		
 		var 	index 			= -1,
-			verticalMidpoint 	= this.bounds.x + (this.bounds.width / 2),
-			horizontalMidpoint 	= this.bounds.y + (this.bounds.height / 2),
+			Xmidpoint 	= Math.round( (this.x2 +this.x1) / 2 ),
+			Ymidpoint 	= Math.round( (this.y2 +this.y1) / 2 ),
+			Zmidpoint	= Math.round( (this.z2 +this.z1) / 2 ),
 	 
 			//pRect can completely fit within the top quadrants
-			topQuadrant = (pRect.y < horizontalMidpoint && pRect.y + pRect.height < horizontalMidpoint),
+			topQuadrant = (pRect.y < Ymidpoint && pRect.y + pRect.height < Ymidpoint),
 			
 			//pRect can completely fit within the bottom quadrants
-			bottomQuadrant = (pRect.y > horizontalMidpoint);
+			bottomQuadrant = (pRect.y > Ymidpoint);
 		 
 		//pRect can completely fit within the left quadrants
-		if( pRect.x < verticalMidpoint && pRect.x + pRect.width < verticalMidpoint ) {
+		if( pRect.x < Xmidpoint && pRect.x + pRect.width < Xmidpoint ) {
 			if( topQuadrant ) {
 				index = 1;
 			} else if( bottomQuadrant ) {
@@ -130,7 +151,7 @@
 			}
 			
 		//pRect can completely fit within the right quadrants	
-		} else if( pRect.x > verticalMidpoint ) {
+		} else if( pRect.x > Xmidpoint ) {
 			if( topQuadrant ) {
 				index = 0;
 			} else if( bottomQuadrant ) {
