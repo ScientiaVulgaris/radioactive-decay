@@ -136,26 +136,49 @@
 			Ymidpoint 	= Math.round( (this.y2 +this.y1) / 2 ),
 			Zmidpoint	= Math.round( (this.z2 +this.z1) / 2 ),
 	 
-			//pRect can completely fit within the top quadrants
-			topQuadrant = (pRect.y < Ymidpoint && pRect.y + pRect.height < Ymidpoint),
+			//pRect can completely fit within the top octants
+			topOctant = (pRect.y < Ymidpoint && pRect.y + pRect.height < Ymidpoint),
 			
-			//pRect can completely fit within the bottom quadrants
-			bottomQuadrant = (pRect.y > Ymidpoint);
+			//pRect can completely fit within the bottom octants
+			bottomOctant = (pRect.y > Ymidpoint),
+
+			//complete fit in front octants
+			frontOctant = (pRect.z > Zmidpoint), 
+
+			//completely fit in back quadrants
+			backOctant = (pRect.z < Zmidpoint);
 		 
 		//pRect can completely fit within the left quadrants
 		if( pRect.x < Xmidpoint && pRect.x + pRect.width < Xmidpoint ) {
-			if( topQuadrant ) {
-				index = 1;
-			} else if( bottomQuadrant ) {
+			if( topOctant ) {
+				if (frontOctant){
+				index = 3;
+				}else if (backOctant){
 				index = 2;
+				}
+				
+			} else if( bottomOctant ) {
+				if (frontOctant){
+					index = 7;
+				else if (backOctant){
+				index = 6;
+				}
 			}
 			
 		//pRect can completely fit within the right quadrants	
 		} else if( pRect.x > Xmidpoint ) {
-			if( topQuadrant ) {
+			if( topOctant ) {
+				if(frontOctant){
 				index = 0;
-			} else if( bottomQuadrant ) {
-				index = 3;
+				} else if (backOctant){
+					index = 1;
+				}
+			} else if( bottomOctant ) {
+				if(frontOctant){
+				index = 4;
+				} else if (backOctant){
+				
+				index = 5;
 			}
 		}
 	 
