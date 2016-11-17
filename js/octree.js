@@ -129,7 +129,7 @@
 	 * @param Object pRect		bounds of the area to be checked, with x, y, width, height
 	 * @return Integer		index of the subnode (0-3), or -1 if pRect cannot completely fit within a subnode and is part of the parent node
 	 */
-	Octree.prototype.getIndex = function( pRect ) {
+	Octree.prototype.getIndex = function( mesh ) {
 		
 		var 	index 			= -1,
 			Xmidpoint 	= Math.round( (this.x2 +this.x1) / 2 ),
@@ -137,19 +137,19 @@
 			Zmidpoint	= Math.round( (this.z2 +this.z1) / 2 ),
 	 
 			//pRect can completely fit within the top octants
-			topOctant = (pRect.y < Ymidpoint && pRect.y + pRect.height < Ymidpoint),
+			topOctant = (mesh.position.y - 50 > Ymidpoint),
 			
 			//pRect can completely fit within the bottom octants
-			bottomOctant = (pRect.y > Ymidpoint),
+			bottomOctant = (mesh.position.y + 50 < Ymidpoint),
 
 			//complete fit in front octants
-			frontOctant = (pRect.z > Zmidpoint), 
+			frontOctant = (mesh.position.z - 50 > Zmidpoint), 
 
 			//completely fit in back quadrants
-			backOctant = (pRect.z < Zmidpoint);
+			backOctant = (mesh.position.z + 50 < Zmidpoint);
 		 
 		//pRect can completely fit within the left quadrants
-		if( pRect.x < Xmidpoint && pRect.x + pRect.width < Xmidpoint ) {
+		if( mesh.position.x + 50 < Xmidpoint ) {
 			if( topOctant ) {
 				if (frontOctant){
 				index = 3;
@@ -166,7 +166,7 @@
 			}
 			
 		//pRect can completely fit within the right quadrants	
-		} else if( pRect.x > Xmidpoint ) {
+		} else if( mesh.position.x - 50 > Xmidpoint ) {
 			if( topOctant ) {
 				if(frontOctant){
 				index = 0;
@@ -192,22 +192,22 @@
 	 * objects to their corresponding subnodes.
 	 * @param Object pRect		bounds of the object to be added, with x, y, width, height
 	 */
-	Octree.prototype.insert = function( pRect ) {
+	Octree.prototype.insert = function( mesh ) {
 		
 		var 	i = 0,
 	 		index;
 	 	
 	 	//if we have subnodes ...
 		if( typeof this.nodes[0] !== 'undefined' ) {
-			index = this.getIndex( pRect );
+			index = this.getIndex( mesh );
 	 
 		  	if( index !== -1 ) {
-				this.nodes[index].insert( pRect );	 
+				this.nodes[index].insert( mesh );	 
 			 	return;
 			}
 		}
 	 
-	 	this.objects.push( pRect );
+	 	this.objects.push( mesh );
 		
 		if( this.objects.length > this.max_objects && this.level < this.max_levels ) {
 			
@@ -236,9 +236,9 @@
 	 * @param Object pRect		bounds of the object to be checked, with x, y, width, height
 	 * @Return Array		array with all detected objects
 	 */
-		Octree.prototype.retrieve = function( pRect ) {
+		Octree.prototype.retrieve = function( mesh ) {
 	 	
-		var 	index = this.getIndex( pRect ),
+		var 	index = this.getIndex( mesh ),
 			returnObjects = this.objects;
 			
 		//if we have subnodes ...
@@ -246,12 +246,12 @@
 			
 			//if pRect fits into a subnode ..
 			if( index !== -1 ) {
-				returnObjects = returnObjects.concat( this.nodes[index].retrieve( pRect ) );
+				returnObjects = returnObjects.concat( this.nodes[index].retrieve( mesh ) );
 				
 			//if pRect does not fit into a subnode, check it against all subnodes
 			} else {
 				for( var i=0; i < this.nodes.length; i=i+1 ) {
-					returnObjects = returnObjects.concat( this.nodes[i].retrieve( pRect ) );
+					returnObjects = returnObjects.concat( this.nodes[i].retrieve( mesh ) );
 				}
 			}
 		}
@@ -261,7 +261,7 @@
 	
 	
 	/*
-	 * Clear the quadtree
+	 * Clear the octree
 	 */
 	Octree.prototype.clear = function() {
 		
