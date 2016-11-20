@@ -1,5 +1,5 @@
 
-;(function(window, Math) {
+//;(function(window, Math) {
  	
 	 /*
 	  * Octree Constructor
@@ -277,6 +277,6 @@
 	};
 
 	//make Quadtree available in the global namespace
-	window.Octree = Octree;	
+	//window.Octree = Octree;	
 
-})(window, Math);
+//})(window, Math);
