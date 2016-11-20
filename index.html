@@ -13,14 +13,7 @@
 		<script>
 			var  scene, camera, renderer;
 var geometry, material, mesh;
-var myTree = new Octree({
-    x1: -250,
-    x2: 250,
-    y1: -250,
-    y2: 250,
-    z1: -250,
-    z2: 250    
-}, 5);
+var myTree = new Octree( -250, 250,-250, 250, -250, 250, 5);
 
 init();
 animate();
