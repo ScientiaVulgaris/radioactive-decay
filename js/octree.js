@@ -49,7 +49,7 @@
 			y1		= subHeight,
 			y2		= y2,
 			z1		= subDepth,
-			z2		= z2;	
+			z2		= z2	
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//top back right node
@@ -59,7 +59,7 @@
 			y1		= subHeight,
 			y2		= y2,
 			z1		= z1,
-			z2		= subDepth;
+			z2		= subDepth
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//top back left node
@@ -69,7 +69,7 @@
 			y1		= subHeight,
 			y2		= y2,
 			z1		= z1,
-			z2		= subDepth;
+			z2		= subDepth
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//top front left node
@@ -79,7 +79,7 @@
 			y1		= subHeight,
 			y2		= y2,
 			z1		= subDepth,
-			z2		= z2;	
+			z2		= z2
 		}, this.max_objects, this.max_levels, nextLevel);
 
 		//bottom front right node
@@ -89,7 +89,7 @@
 			y1		= y1,
 			y2		= subHeight
 			z1		= subDepth,
-			z2		= z2;	
+			z2		= z2	
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//bottom back right
@@ -99,7 +99,7 @@
 			y1		= y1,
 			y2		= subHeight
 			z1		= z1,
-			z2		= subDepth;
+			z2		= subDepth
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//bottom back left node
@@ -109,7 +109,7 @@
 			y1		= y1,
 			y2		= subWidth
 			z1		= z1,
-			z2		= subDepth;
+			z2		= subDepth
 		}, this.max_objects, this.max_levels, nextLevel);
 		
 		//bottom front left node
@@ -119,7 +119,7 @@
 			y1		= y1,
 			y2		= subHeight
 			z1		= subDepth,
-			z2		= z2;	
+			z2		= z2
 		}, this.max_objects, this.max_levels, nextLevel);
 	};
 	
