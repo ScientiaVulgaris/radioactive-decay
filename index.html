@@ -32,6 +32,15 @@ controls = new THREE.OrbitControls( camera );
     geometry = new THREE.SphereGeometry( 50, 150,150 );
 var spheres = [];
 
+var myTree = new octree.Octree({
+    x1: -250,
+    x2: 250,
+    y1: -250,
+    y2: 250,
+    z1: -250,
+    z2: 250    
+}, 5);
+
    
 //random 
 for (var i = 0; i < 90; i++){
@@ -39,17 +48,7 @@ var x = 250 - Math.ceil(Math.random()*500);
 var y = 250 - Math.ceil(Math.random()*500);
 var z = 250 - Math.ceil(Math.random()*500);
 
-	/*
-while(x%50 != 0){
-x = 250 - Math.ceil(Math.random()*500);
-}
-while(y%50 != 0){
-y = 250 - Math.ceil(Math.random()*500);
-}
-while(z%50 != 0){
-z = 250 - Math.ceil(Math.random()*500);
-}
-*/
+	
 
 
 var colorRGB = new THREE.Color( Math.random(), Math.random(), Math.random() );
@@ -59,26 +58,24 @@ emissive: 0x000000, specular: 0x000000, shininess: 60.0});
 
 
    
-
+function collisionCheck(x, y, z){
 
 if(spheres.length > 0){
-for(j = 0; j < spheres.length; j++){
-if (Math.pow(x - spheres[j].position.x,2) + 
-Math.pow(y - spheres[j].position.y,2) + 
-Math.pow(z - spheres[j].position.z,2) < Math.pow(100, 2) ){
- x = 250 - Math.ceil(Math.random()*500);
- y = 250 - Math.ceil(Math.random()*500);
- z = 250 - Math.ceil(Math.random()*500);
-j = 0;
-
-}
-}
-console.log('this should appear more than once126');
 mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(x+'.0', y+'.0', z+'.0');
+var elements = myTree.retrieve(mesh);
+for (var g = 0; g < elements.length; g++){
+if(Math.pow(x - elements[g].position.x,2) + 
+Math.pow(y - elements[g].position.y,2) + 
+Math.pow(z - elements[g].position.z,2)) < Math.pow(100, 2)){
+ collisionCheck(250 - Math.ceil(Math.random()*500), 250 - Math.ceil(Math.random()*500), 250 - Math.ceil(Math.random()*500))
+
+} else{
+myTree.insert(mesh);
  scene.add( mesh);
 spheres.push(mesh); 
-	
+
+}	
 
 
 } 
@@ -86,9 +83,13 @@ else{
 console.log('this should appear once');
 mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(x+'.0', y+'.0', z+'.0');
+myTree.insert(mesh);
  scene.add( mesh);
 spheres.push(mesh); 
 }
+}
+collisionCheck(x, y, z);
+
 
 
 
