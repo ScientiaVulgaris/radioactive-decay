@@ -274,7 +274,7 @@
 		}
 
 		this.nodes = [];
-	};
+	}
 
 	//make Quadtree available in the global namespace
 	//window.Octree = Octree;	
