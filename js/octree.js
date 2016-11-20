@@ -160,7 +160,7 @@
 			} else if( bottomOctant ) {
 				if (frontOctant){
 					index = 7;
-				else if (backOctant){
+				}else if (backOctant){
 				index = 6;
 				}
 			}
