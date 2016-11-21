@@ -192,7 +192,7 @@
 	 * objects to their corresponding subnodes.
 	 * @param Object pRect		bounds of the object to be added, with x, y, width, height
 	 */
-	Octree.prototype.insert = function( mesh ) {
+	Octree.insert = function( mesh ) {
 		
 		var 	i = 0,
 	 		index;
