@@ -41,7 +41,7 @@ for (var i = 0; i < 10; i++){
 var x = 250 - Math.ceil(Math.random()*500);
 var y = 250 - Math.ceil(Math.random()*500);
 var z = 250 - Math.ceil(Math.random()*500);
-
+var spherePlaced = false; 
 	
 
 
@@ -52,9 +52,9 @@ emissive: 0x000000, specular: 0x000000, shininess: 60.0});
 
 
    
-function collisionCheck(x, y, z){
 
-if(spheres.length > 0){
+
+if(spheres.length > 0 && spherePlaced == false){
 mesh = new THREE.Mesh( geometry, material );
 mesh.position.set(x+'.0', y+'.0', z+'.0');
 var elements = myTree.retrieve(mesh);
@@ -62,13 +62,17 @@ for (var g = 0; g < elements.length; g++){
 if(Math.pow(x - elements[g].position.x,2) + 
 Math.pow(y - elements[g].position.y,2) + 
 Math.pow(z - elements[g].position.z,2) < Math.pow(100, 2)){
- collisionCheck(250 - Math.ceil(Math.random()*500), 250 - Math.ceil(Math.random()*500), 250 - Math.ceil(Math.random()*500));
+ x = 250 - Math.ceil(Math.random()*500);
+ y = 250 - Math.ceil(Math.random()*500);
+ z = 250 - Math.ceil(Math.random()*500);
+spherePlaced == false; 
 
 
 } else{
 myTree.insert(mesh);
  scene.add( mesh);
 spheres.push(mesh); 
+spherePlaced = true; 
 
 }
 }	
@@ -83,8 +87,8 @@ myTree.insert(mesh);
  scene.add( mesh);
 spheres.push(mesh); 
 }
-}
-collisionCheck(x, y, z);
+
+
 
 
 
