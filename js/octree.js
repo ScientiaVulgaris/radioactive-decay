@@ -279,4 +279,4 @@
 	//make Quadtree available in the global namespace
 	//window.Octree = Octree;	
 
-//})(window, Math);
+});//(window, Math);
